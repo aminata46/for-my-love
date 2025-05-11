@@ -14,7 +14,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding: 100px 20px 60px;
+      padding: 80px 24px 60px;
       min-height: 100vh;
       margin: 0;
       text-align: center;
@@ -29,38 +29,39 @@
     }
 
     .button-container {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-bottom: 50px;
-    width: 100%;
-    max-width: 340px;
-  }
-    
-  button {
-    padding: 16px 28px;
-    border: 1px solid #c4a484;
-    border-radius: 10px;
-    background-color: #f3e8dc;
-    color: #4b3b2c;
-    font-size: 1.25rem; /* augmenté */
-    font-family: 'Patrick Hand', cursive;
-    cursor: pointer;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-  }
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 50px;
+      width: 100%;
+      max-width: 400px;
+    }
 
-   button:hover {
-    background-color: #e6d4c5;
-    transform: scale(1.03);
-  }
+    button {
+      padding: 16px 28px;
+      border: 1px solid #c4a484;
+      border-radius: 10px;
+      background-color: #f3e8dc;
+      color: #4b3b2c;
+      font-size: 1.25rem;
+      font-family: 'Patrick Hand', cursive;
+      cursor: pointer;
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e6d4c5;
+      transform: scale(1.03);
+    }
 
     .message-box {
       background-color: #fefaf5;
       padding: 28px 20px;
       border: 1px solid #e0c9b6;
       border-radius: 12px;
-      max-width: 90%;
+      width: 100%;
+      max-width: 500px;
       font-size: 1.3rem;
       line-height: 1.8;
       display: none;
@@ -79,18 +80,13 @@
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(15px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
+
   <h1 id="mainTitle">Une lettre pour ton cœur 💌</h1>
 
   <div class="button-container" id="buttonContainer">
@@ -101,4 +97,41 @@
 
   <div class="message-box" id="messageBox"></div>
 
-  <div class="signature
+  <div class="signature" id="signature">Avec tendresse, ton amoureuse 💌</div>
+
+  <script>
+    const messages = {
+      love: [
+        "Je t’aime doucement, comme on tourne une page précieuse.",
+        "Tu es mon refuge tendre dans le brouhaha du monde.",
+        "Merci d’exister. Ton sourire est une lumière dans mes jours.",
+        "Chaque pensée pour toi est un battement de plus dans mon cœur."
+      ],
+      boost: [
+        "Tu as en toi la force de mille soleils.",
+        "Même quand tu doutes, je crois en toi.",
+        "Chaque pas que tu fais, même petit, construit ton chemin.",
+        "N’oublie jamais combien tu es capable. Moi, je le vois clair."
+      ],
+      comfort: [
+        "Laisse-toi aller à la douceur, je suis là.",
+        "Quand le monde semble lourd, pense à moi comme un oreiller tendre.",
+        "Tu peux tout poser ici. Il y a de la place dans mes bras.",
+        "Tout passe. Mais moi, je reste à tes côtés."
+      ]
+    };
+
+    function showMessage(category) {
+      const categoryMessages = messages[category];
+      const randomMsg = categoryMessages[Math.floor(Math.random() * categoryMessages.length)];
+      const messageBox = document.getElementById("messageBox");
+      messageBox.innerText = randomMsg;
+      messageBox.style.display = "block";
+      document.getElementById("signature").style.display = "block";
+      document.getElementById("buttonContainer").style.display = "none";
+      document.getElementById("mainTitle").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
